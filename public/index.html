@@ -1,0 +1,73 @@
+<html>
+<head>
+<title> OpenBoard </title>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div class="bottom-container">
+<div class="close"><img src="./images/CloseButton.svg"></div>
+<div class="toolbar">    
+    <div class="tool" id="draw">
+        <img src="./images/Black_Pencil.svg">
+        <div class="tool-options">
+            <div class="pencil-width">
+                <input type="range" id="pencil-tool-width" value="4" min="4" max="25" step="1" onchange="changePencilWidth(this)">
+            </div>
+            <div class="pencil-color">
+                <div class="color red" onclick="changePencilCol('red')"></div>
+                <div class="color blue" onclick="changePencilCol('blue')"></div>
+                <div class="color green" onclick="changePencilCol('green')"></div>
+            </div>
+        </div>
+    </div>
+    <div class="tool" id="eraser">
+        <img src="./images/Eraser.svg">
+        <div class="tool-options">
+            <div class="pencil-width">
+                <input type="range" value="4" min="4" max="25" step="1" onchange="changePencilWidth(this)">
+            </div>
+        </div>
+    </div>
+    <div class="tool" id="sticky"><img src="./images/StickyNote.svg"></div>
+    <div class="tool" id="move"><img src="./images/MoveIcon.svg"></div>
+    <div class="tool" id="undo"><img src="./images/Undo.svg"></div>
+    <div class="tool" id="redo"><img src="./images/Redo.svg"></div>
+    <div class="tool" id="upload"><img src="./images/Photo.svg"></div>
+    <div class="tool" id="download"><img src="./images/Download.svg"></div>
+</div>
+</div>
+
+<canvas class="board"> </canvas>
+<!-- 1. add socket.io client cdn script-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+<script>
+    let board = document.querySelector(".board");
+    let body = document.querySelector("body");
+    board.height = window.innerHeight;
+    board.width = window.innerWidth;
+    let ctx = board.getContext("2d");
+    //2. it gives io client object to connect to client socket through server ip address
+    let clientSocket = io.connect("http://localhost:3000");
+
+    //3. emitting an event
+    // clientSocket.emit("colorChange","red");
+
+    // ctx.fillStyle = "purple";
+    // ctx.strokeStyle = "red";
+    // ctx.lineWidth = 10;
+    // ctx.strokeRect(100,100,100,100);
+    // ctx.fillRect(100,100,100,100);
+
+    // ctx.beginPath();
+    // ctx.moveTo(50,100);
+    // ctx.lineTo(100,150);
+    // ctx.lineTo(150,100);
+    // ctx.closePath();
+    // ctx.stroke();
+
+</script>
+<script src="canvas.js"></script>
+<script src="tools.js"></script>
+<script src="reciever.js"></script>
+</body>
+</html>
