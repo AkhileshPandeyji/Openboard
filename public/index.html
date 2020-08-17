@@ -47,7 +47,7 @@
     board.width = window.innerWidth;
     let ctx = board.getContext("2d");
     //2. it gives io client object to connect to client socket through server ip address
-    let clientSocket = io.connect("http://localhost:3000");
+    let clientSocket = io.connect("https://akpwhiteboard.herokuapp.com/");
 
     //3. emitting an event
     // clientSocket.emit("colorChange","red");
